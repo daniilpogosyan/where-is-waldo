@@ -1,0 +1,15 @@
+.stopwatch {
+  position: sticky;
+  top: 0;
+  text-align: center;
+}
+
+.stopwatch-value {
+  display: inline-block;
+  padding: 0.5em;
+  border: 1px solid #fff;
+  font-size: 24px;
+  font-weight: 800;
+  background-color: #00000088;
+  color: #fff;
+}
