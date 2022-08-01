@@ -7,7 +7,7 @@ import Leaderboard from './pages/Leaderboard/Leaderboard';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />}/>
@@ -15,7 +15,7 @@ function App() {
           <Route path="/leaderboard"  element={<Leaderboard />}/>
         </Route>
       </Routes>
-    </div>
+    </>
   );
 }
 

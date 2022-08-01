@@ -1,17 +1,25 @@
 import { Link } from 'react-router-dom';
 
+import './Header.css';
+
 export default function Header(props) {
   return (
-    <header>
-      <h1>
-        <Link to="/">Where's Waldo?</Link>
+    <header className="header">
+      <h1 className="heading">
+        <Link className="link" to="/">
+          Where's Waldo?
+        </Link>
       </h1>
-      <ul>
+      <ul className="header-links">
         <li>
-          <Link to="/game">Game</Link>
+          <Link className="link" to="/game">
+            Game
+          </Link>
         </li>
         <li>
-          <Link to="/leaderboard">Leaderboard</Link>
+          <Link className="link" to="/leaderboard">
+            Leaderboard
+          </Link>
         </li>
       </ul>
     </header>
