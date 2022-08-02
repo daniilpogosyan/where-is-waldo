@@ -1,7 +1,7 @@
 import './DropDown.css';
 
 export default function DropDown(props) {
-  if (props.position)
+  if (props.position && props.targets.length > 0)
     return (
       <ul
         className="drop-down"
@@ -10,11 +10,16 @@ export default function DropDown(props) {
           top: props.position.y + "px",
         }}
       >
-        <li>Scorpion</li>
-        <li>Sub-zero</li>
-        <li>Shao Kahn</li>
+        {props.targets.map(target => (
+          <li
+            key={target.name}
+            onClick={() => props.onChoose(target.name)}
+          >
+            {target.name}
+          </li>
+        ))}
       </ul>
     )
-    
+
   return null
 }

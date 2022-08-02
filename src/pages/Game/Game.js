@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import { getTargets } from '../../data/targets';
+
 import Picture from './components/Picture';
 import Stopwatch from './components/Stopwatch';
 import DropDown from './components/DropDown';
@@ -8,6 +10,8 @@ import './Game.css';
 
 export default function Game(props) {
   const [dropDownPosition, setDropDownPosition] = useState(null);
+  const [lastClickCoords, setLastClickCoords] = useState(null);
+  const [targets, setTargets] = useState([]);
 
   useEffect(() => {
     document.addEventListener('keydown', handlePressEscapeKey);
@@ -17,6 +21,10 @@ export default function Game(props) {
     return () => {
       document.removeEventListener('keydown', handlePressEscapeKey);
     }
+  }, []);
+
+  useEffect(() => {
+    setTargets(getTargets());
   }, []);
 
   //return true if distance between points is lower than eps
@@ -40,11 +48,25 @@ export default function Game(props) {
     }
     
     setDropDownPosition(absCoords);
+    setLastClickCoords(relCoords)
+
   }
 
   function handlePressEscapeKey(e) {
     if (e.key === 'Escape') 
       setDropDownPosition(undefined)
+  }
+  
+  const handleChooseTarget = (name) => {
+    const target = targets.find(target => target.name === name);
+    const targetFound = pointsAreClose(
+      target.origin,
+      lastClickCoords,
+      target.radius
+    )
+    if (targetFound)
+      setTargets(targets.filter(target => target.name !== name))
+    setDropDownPosition(null);
   }
   
 
@@ -53,6 +75,8 @@ export default function Game(props) {
       <Stopwatch />
       <DropDown
         position={dropDownPosition}
+        targets={targets}
+        onChoose={handleChooseTarget}
       />
       <Picture
         onClick={handleClickPicture}
