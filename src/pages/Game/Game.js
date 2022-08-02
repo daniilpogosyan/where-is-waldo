@@ -1,4 +1,8 @@
-import { useState, useEffect } from 'react';
+import {
+  useState,
+  useEffect,
+  useRef
+} from 'react';
 
 import { getTargets } from '../../data/targets';
 
@@ -11,7 +15,9 @@ import './Game.css';
 export default function Game(props) {
   const [dropDownPosition, setDropDownPosition] = useState(null);
   const [lastClickCoords, setLastClickCoords] = useState(null);
-  const [targets, setTargets] = useState([]);
+  const [targets, setTargets] = useState(null);
+  const [stopwatchMillisec, setStopwatchMillisec] = useState(0);
+  const stopwatchID = useRef(null);
 
   useEffect(() => {
     document.addEventListener('keydown', handlePressEscapeKey);
@@ -26,6 +32,11 @@ export default function Game(props) {
   useEffect(() => {
     setTargets(getTargets());
   }, []);
+
+  useEffect(() => {
+    if(targets?.length === 0)
+      stopStopwatch()
+  }, [targets])
 
   //return true if distance between points is lower than eps
   function pointsAreClose(p1, p2, eps) {
@@ -69,10 +80,27 @@ export default function Game(props) {
     setDropDownPosition(null);
   }
   
+  function startStopwatch() {
+    const dt = 10;
+    stopwatchID.current = setInterval(() => {
+      setStopwatchMillisec(elapsed => elapsed + dt)
+    }, dt);
+    console.log('stopwatch is running! id:', stopwatchID.current)
+  }
+
+  function stopStopwatch() {
+    clearInterval(stopwatchID.current);
+    console.log('stopwatch is stopped! id:', stopwatchID.current)
+  }
+
 
   return (
     <div className="game">
-      <Stopwatch />
+      <Stopwatch
+        elapsed={stopwatchMillisec}
+        start={startStopwatch}
+        stop={stopStopwatch}
+      />
       <DropDown
         position={dropDownPosition}
         targets={targets}
