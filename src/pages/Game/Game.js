@@ -1,9 +1,24 @@
+import { useState, useEffect } from 'react';
+
 import Picture from './components/Picture';
 import Stopwatch from './components/Stopwatch';
+import DropDown from './components/DropDown';
 
 import './Game.css';
 
 export default function Game(props) {
+  const [dropDownPosition, setDropDownPosition] = useState(null);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handlePressEscapeKey);
+
+    // remove event, so listeners won't be multiplied if user click 
+    // on other links (e.g Leaderboard )
+    return () => {
+      document.removeEventListener('keydown', handlePressEscapeKey);
+    }
+  }, []);
+
   //return true if distance between points is lower than eps
   function pointsAreClose(p1, p2, eps) {
     const distance = Math.hypot(
@@ -24,12 +39,21 @@ export default function Game(props) {
       y: absCoords.y / imageRect.height
     }
     
-    console.log(relCoords)
+    setDropDownPosition(absCoords);
   }
+
+  function handlePressEscapeKey(e) {
+    if (e.key === 'Escape') 
+      setDropDownPosition(undefined)
+  }
+  
 
   return (
     <div className="game">
       <Stopwatch />
+      <DropDown
+        position={dropDownPosition}
+      />
       <Picture
         onClick={handleClickPicture}
       />
