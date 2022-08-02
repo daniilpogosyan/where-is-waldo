@@ -14,3 +14,11 @@ ul, ol {
 #root {
   height: 100%;
 }
+
+.main-text {
+  color: #fff;
+}
+
+.sub-text {
+  color: #cbcbcb;
+}

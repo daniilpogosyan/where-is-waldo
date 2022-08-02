@@ -1,0 +1,13 @@
+.board {
+  width: 100%;
+  list-style: decimal;
+}
+
+.leaderboard li+li {
+  border-top: 1px solid var(--orange);
+  border-width: 2px;
+}
+
+.leaderboard li::marker {
+  color: #fff;
+}
