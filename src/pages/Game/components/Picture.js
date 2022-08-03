@@ -6,7 +6,7 @@ export default function Picture(props) {
       onClick={props.onClick}
       draggable="false"
       className="picture"
-      src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/c64ca899271971.5eef55f5bd316.jpg"
+      src={props.imgUrl}
       alt=""
     />
   )

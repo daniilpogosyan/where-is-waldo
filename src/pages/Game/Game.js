@@ -4,7 +4,7 @@ import {
   useRef
 } from 'react';
 
-import { getTargets } from '../../data/targets';
+import { getGamePicture } from '../../data/firestore.js';
 
 import Picture from './components/Picture';
 import Stopwatch from './components/Stopwatch';
@@ -13,6 +13,7 @@ import DropDown from './components/DropDown';
 import './Game.css';
 
 export default function Game(props) {
+  const [imgUrl, setImgUrl] = useState(null);
   const [dropDownPosition, setDropDownPosition] = useState(null);
   const [lastClickCoords, setLastClickCoords] = useState(null);
   const [targets, setTargets] = useState(null);
@@ -30,7 +31,11 @@ export default function Game(props) {
   }, []);
 
   useEffect(() => {
-    setTargets(getTargets());
+    getGamePicture('mortal-kombat')
+      .then(data => {
+        setTargets(data.targets);
+        setImgUrl(data.imgUrl);
+      })
   }, []);
 
   useEffect(() => {
@@ -107,6 +112,7 @@ export default function Game(props) {
         onChoose={handleChooseTarget}
       />
       <Picture
+        imgUrl={imgUrl}
         onClick={handleClickPicture}
       />
     </div>
