@@ -98,6 +98,10 @@ export default function Game(props) {
     console.log('stopwatch is stopped! id:', stopwatchID.current)
   }
 
+  const handleLoadImg = (e) => {
+    startStopwatch();
+  }
+
 
   return (
     <div className="game">
@@ -113,6 +117,7 @@ export default function Game(props) {
       />
       <Picture
         imgUrl={imgUrl}
+        onLoad={handleLoadImg}
         onClick={handleClickPicture}
       />
     </div>

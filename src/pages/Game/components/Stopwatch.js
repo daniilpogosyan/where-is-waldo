@@ -6,7 +6,6 @@ import './Stopwatch.css';
 
 export default function StopWatch({elapsed, start, stop}) {
   useEffect(() => {
-    start();
     return () => stop()
   }, []);
 
