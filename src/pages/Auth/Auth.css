@@ -1,0 +1,15 @@
+.auth {
+  width: 500px;
+  margin: auto;
+  background-color: var(--light-gray);
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.tab {
+  cursor: pointer;
+  color: var(--orange);
+}

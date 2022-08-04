@@ -1,0 +1,20 @@
+.user-container {
+  color: var(--light-orange);
+}
+
+.drop-down-container {
+  position: relative;
+}
+
+.drop-down-container .drop-down {
+  visibility: hidden;
+  padding: 0;
+}
+
+.drop-down-container:hover .drop-down {
+  position: absolute;
+  visibility: visible;
+  width: 100%;
+  left: 0;
+  top: 100%;
+}

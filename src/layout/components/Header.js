@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import UserContainer from './UserContainer';
+
 import './Header.css';
 
 export default function Header(props) {
@@ -22,6 +24,7 @@ export default function Header(props) {
           </Link>
         </li>
       </ul>
+      <UserContainer />
     </header>
   )
 }

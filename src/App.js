@@ -4,6 +4,7 @@ import Layout from './layout/Layout';
 import Home from './pages/Home/Home';
 import Game from './pages/Game/Game';
 import Leaderboard from './pages/Leaderboard/Leaderboard';
+import Auth from './pages/Auth/Auth';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route index element={<Home />}/>
           <Route path="/game"  element={<Game />}/>
           <Route path="/leaderboard"  element={<Leaderboard />}/>
+          <Route path="/auth" element={<Auth />}/>
         </Route>
       </Routes>
     </>
