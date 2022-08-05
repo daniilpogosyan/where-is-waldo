@@ -1,0 +1,17 @@
+.modal-window {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #0008;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.modal-window__content {
+  position: sticky;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 50vh;
+  text-align: center;
+}

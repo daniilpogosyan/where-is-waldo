@@ -1,4 +1,5 @@
 .game {
   position: relative;
+  min-height: 100%;
   background-color: var(--dark-gray);
 }

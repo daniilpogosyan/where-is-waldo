@@ -4,11 +4,7 @@ import Clock from '../../../components/Clock';
 
 import './Stopwatch.css';
 
-export default function StopWatch({elapsed, start, stop}) {
-  useEffect(() => {
-    return () => stop()
-  }, []);
-
+export default function StopWatch({elapsed}) {
   return (
     <div className="stopwatch">
       <span className="stopwatch-value">

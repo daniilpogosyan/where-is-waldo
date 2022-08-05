@@ -9,6 +9,7 @@ import { getGamePicture } from '../../data/firestore.js';
 import Picture from './components/Picture';
 import Stopwatch from './components/Stopwatch';
 import DropDown from './components/DropDown';
+import ModalWindow from '../../components/ModalWindow';
 
 import './Game.css';
 
@@ -19,6 +20,10 @@ export default function Game(props) {
   const [targets, setTargets] = useState(null);
   const [stopwatchMillisec, setStopwatchMillisec] = useState(0);
   const stopwatchID = useRef(null);
+  const didMount = useRef(false);
+
+  const [gameIsReady, setGameIsReady] = useState(false);
+  const [gameIsOn, setGameIsOn] = useState(false);
 
   useEffect(() => {
     document.addEventListener('keydown', handlePressEscapeKey);
@@ -36,11 +41,21 @@ export default function Game(props) {
         setTargets(data.targets);
         setImgUrl(data.imgUrl);
       })
+
+    return () => {
+      stopStopwatch();
+    }
   }, []);
 
   useEffect(() => {
-    if(targets?.length === 0)
-      stopStopwatch()
+    if(!didMount.current) {
+      didMount.current = true;
+      return
+    }
+
+    if(targets?.length === 0) {
+      endGame();
+    }
   }, [targets])
 
   //return true if distance between points is lower than eps
@@ -99,16 +114,38 @@ export default function Game(props) {
   }
 
   const handleLoadImg = (e) => {
+    setGameIsReady(true)
+  }
+
+  function startGame() {
+    setGameIsOn(true);
     startStopwatch();
+  }
+
+  function endGame() {
+    stopStopwatch();
+    setGameIsReady(false);
+    setGameIsOn(false);
   }
 
 
   return (
     <div className="game">
+      {gameIsOn === false && (
+        <ModalWindow>
+          {
+            gameIsReady
+            ? (
+              <button onClick={startGame}>
+                Start!
+              </button>
+            )
+            : <p className='sub-text'>Loading...</p>
+          }
+        </ModalWindow>
+      )}
       <Stopwatch
         elapsed={stopwatchMillisec}
-        start={startStopwatch}
-        stop={stopStopwatch}
       />
       <DropDown
         position={dropDownPosition}
