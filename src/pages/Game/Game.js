@@ -9,7 +9,7 @@ import { getGamePicture } from '../../data/firestore.js';
 import Picture from './components/Picture';
 import Stopwatch from './components/Stopwatch';
 import DropDown from './components/DropDown';
-import ModalWindow from '../../components/ModalWindow';
+import GameModalWindow from './components/GameModalWindow';
 
 import './Game.css';
 
@@ -132,17 +132,11 @@ export default function Game(props) {
   return (
     <div className="game">
       {gameIsOn === false && (
-        <ModalWindow>
-          {
-            gameIsReady
-            ? (
-              <button onClick={startGame}>
-                Start!
-              </button>
-            )
-            : <p className='sub-text'>Loading...</p>
-          }
-        </ModalWindow>
+        <GameModalWindow
+          gameIsReady={gameIsReady}
+          startGame={startGame}
+          lastGameTime={stopwatchMillisec}
+        />
       )}
       <Stopwatch
         elapsed={stopwatchMillisec}
