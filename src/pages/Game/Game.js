@@ -4,6 +4,20 @@ import {
   useRef
 } from 'react';
 
+import firebaseConfig from '../../data/firebase-config';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  limit,
+  getDocs,
+  setDoc,
+  addDoc
+ } from 'firebase/firestore';
+
 import { getGamePicture } from '../../data/firestore.js';
 
 import Picture from './components/Picture';
@@ -12,6 +26,11 @@ import DropDown from './components/DropDown';
 import GameModalWindow from './components/GameModalWindow';
 
 import './Game.css';
+
+initializeApp(firebaseConfig);
+
+const db = getFirestore();
+const resultsCol = collection(db, 'results');
 
 export default function Game(props) {
   const [imgUrl, setImgUrl] = useState(null);
@@ -126,6 +145,41 @@ export default function Game(props) {
     stopStopwatch();
     setGameIsReady(false);
     setGameIsOn(false);
+
+    const currentUser = getAuth().currentUser;
+
+    if (currentUser === null) return
+
+    const q = query(
+      resultsCol,
+      where('uid', '==', currentUser.uid),
+      where('pictureId', '==', 'd6UbKCNeBwUUo09UFCq5'),
+      limit(1)
+    );
+    
+    const newData = {
+      pictureId: 'd6UbKCNeBwUUo09UFCq5',
+      time: stopwatchMillisec,
+      uid: currentUser.uid,
+      username: currentUser.displayName
+    };
+
+    getDocs(q)
+      .then(snapshot => {
+        if (snapshot.docs.length === 0) {
+          addDoc(resultsCol, newData)
+            .then(() => console.log('data is created.'));
+          return
+        }
+        
+        
+        if(snapshot.docs.length === 1
+          && snapshot.docs[0].data().time > stopwatchMillisec) {
+          setDoc(snapshot.docs[0].ref, newData)
+            .then(() => console.log('data is updated.'));
+          return 
+        }
+      })
   }
 
 
