@@ -1,16 +1,56 @@
 import { useState, useEffect } from 'react';
 
-import { getUsersResults } from '../../data/usersResults';
+import firebaseConfig from '../../data/firebase-config';
+import {
+  initializeApp
+} from 'firebase/app';
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs
+} from 'firebase/firestore';
 
 import Board from './components/Board';
 
 import './Leaderboard.css';
 
+
+initializeApp(firebaseConfig);
+
+const db = getFirestore();
+
 export default function Leaderboard(props) {
-  const [results, setState] = useState(null);
+  const [results, setResults] = useState(null);
+  const [logMessage, setLogMessage] = useState('Loading...');
 
   useEffect(() => {
-    setState(getUsersResults());
+    const q = query(collection(db, 'results'), where('pictureId', '!=', ''));
+
+    getDocs(q)
+    .then(snapshot => {
+      const displayedResults = [];
+
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        displayedResults.push({
+          username: data.username,
+          time: data.time
+        })
+      });
+
+      if (displayedResults.length === 0)
+        setLogMessage('No results yet. Be the first!')
+      else 
+        setLogMessage('');
+
+        setResults(displayedResults);
+    })
+    .catch(err => {
+      setLogMessage('Something went wrong :(');
+      console.log(err)
+    })
   }, [])
 
   return (
@@ -27,7 +67,7 @@ export default function Leaderboard(props) {
             />
           </>
           )
-        : <p className="sub-text">No results yet...</p>
+        : <p className="sub-text">{logMessage}</p>
       }
     </div>
     
