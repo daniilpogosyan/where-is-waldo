@@ -158,6 +158,7 @@ export default function Game(props) {
     setGameIsOn(false);
 
     setResult({
+      pictureId: pictureId,
       time: stopwatchMillisec
     })
 

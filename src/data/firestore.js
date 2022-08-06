@@ -67,9 +67,9 @@ export async function getIcons() {
   })))
 }
 
-export async function getResults() {
+export async function getResults(pictureId) {
   const resultsQuery = query(resultsCol,
-     where('pictureId', '==', 'd6UbKCNeBwUUo09UFCq5'),
+     where('pictureId', '==', pictureId),
      orderBy('time')
      );
   const snapshot = await getDocs(resultsQuery);
@@ -87,7 +87,7 @@ export async function getResults() {
   return await results;
 }
 
-export async function setResult({time}) {
+export async function setResult({pictureId, time}) {
   const currentUser = getAuth().currentUser;
 
   if (currentUser === null) return
@@ -96,12 +96,12 @@ export async function setResult({time}) {
   const q = query(
     resultsCol,
     where('uid', '==', currentUser.uid),
-    where('pictureId', '==', 'd6UbKCNeBwUUo09UFCq5'),
+    where('pictureId', '==', 'pictureId'),
     limit(1)
   );
   
   const newData = {
-    pictureId: 'd6UbKCNeBwUUo09UFCq5',
+    pictureId: pictureId,
     time: time,
     uid: currentUser.uid,
     username: currentUser.displayName

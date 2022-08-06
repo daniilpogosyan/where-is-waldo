@@ -12,7 +12,7 @@ export default function Leaderboard(props) {
   const [logMessage, setLogMessage] = useState('Loading...');
 
   useEffect(() => {
-    getResults()
+    getResults("d6UbKCNeBwUUo09UFCq5")
     .then(results => {
       if (results.length === 0)
         setLogMessage('No results yet. Be the first!')
