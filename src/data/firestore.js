@@ -8,6 +8,7 @@ import {
   collection,
   query,
   where,
+  orderBy,
   limit,
   getDocs,
   addDoc,
@@ -51,7 +52,10 @@ export async function getGamePicture(name) {
 }
 
 export async function getResults() {
-  const resultsQuery = query(resultsCol, where('pictureId', '!=', ''));
+  const resultsQuery = query(resultsCol,
+     where('pictureId', '==', 'd6UbKCNeBwUUo09UFCq5'),
+     orderBy('time')
+     );
   const snapshot = await getDocs(resultsQuery);
 
   const results = [];
