@@ -25,6 +25,7 @@ const db = getFirestore();
 const storage = getStorage();
 
 const picsCol = collection(db, 'pictures');
+const resultsCol = collection(db, 'results');
 
 async function getImageUrl(imgName) {
   const imgRef = await ref(storage, `game-pictures/${imgName}`);
@@ -42,4 +43,21 @@ export async function getGamePicture(name) {
     targets: data.targets,
     imgUrl
   }
+}
+
+export async function getResults() {
+  const resultsQuery = query(resultsCol, where('pictureId', '!=', ''));
+  const snapshot = await getDocs(resultsQuery);
+
+  const results = [];
+
+  snapshot.forEach(doc => {
+    const data = doc.data();
+    results.push({
+      username: data.username,
+      time: data.time
+    })
+  });
+
+  return await results;
 }
