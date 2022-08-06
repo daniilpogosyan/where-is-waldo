@@ -24,7 +24,7 @@ export default function UserContainer(props) {
   const userIsAuthorized = (username !== null && username !== undefined);
 
   return (
-    <div className="user-container drop-down-container">
+    <div className="user-container drop-down-container drop-down-container--on-hover">
       {
         userIsAuthorized
         ? <span>{username}</span>
