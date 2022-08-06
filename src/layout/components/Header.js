@@ -14,11 +14,6 @@ export default function Header(props) {
       </h1>
       <ul className="header-links">
         <li>
-          <Link className="link" to="/game">
-            Game
-          </Link>
-        </li>
-        <li>
           <Link className="link" to="/leaderboard">
             Leaderboard
           </Link>
