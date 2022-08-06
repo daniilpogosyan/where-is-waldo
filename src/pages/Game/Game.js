@@ -3,6 +3,7 @@ import {
   useEffect,
   useRef
 } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { getGamePicture, setResult } from '../../data/firestore.js';
 
@@ -14,6 +15,7 @@ import GameModalWindow from './components/GameModalWindow';
 import './Game.css';
 
 export default function Game(props) {
+  const { pictureId } = useParams();
   const targetsDB = useRef(null);
   const [imgUrl, setImgUrl] = useState(null);
   const [dropDownPosition, setDropDownPosition] = useState(null);
@@ -38,7 +40,7 @@ export default function Game(props) {
   }, []);
 
   useEffect(() => {
-    getGamePicture('mortal-kombat')
+    getGamePicture(pictureId)
       .then(data => {
         targetsDB.current = data.targets;
         setImgUrl(data.imgUrl);

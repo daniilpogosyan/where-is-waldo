@@ -1,13 +1,17 @@
+import { Link } from 'react-router-dom';
+
 import './Icon.css';
 
-export default function Icon({imgUrl}) {
+export default function Icon({imgUrl, pictureId}) {
   return (
     <div className="cropper">
-      <img
-        className="cropped"
-        src={imgUrl}
-        alt=""
-      />
+      <Link to={`/game/${pictureId}`}>
+        <img
+          className="cropped"
+          src={imgUrl}
+          alt=""
+        />
+      </Link>
     </div>
   )
 }

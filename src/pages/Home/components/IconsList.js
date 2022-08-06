@@ -7,7 +7,10 @@ export default function IconsList(props) {
     <ul className="icons">
       {props.icons && props.icons.map(icon => (
         <li key={icon.pictureId}>
-          <Icon imgUrl={icon.imgUrl} />
+          <Icon
+            imgUrl={icon.imgUrl}
+            pictureId={icon.pictureId}
+          />
         </li>
       ))}
     </ul>

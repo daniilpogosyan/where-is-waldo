@@ -12,7 +12,9 @@ import {
   limit,
   getDocs,
   addDoc,
-  setDoc
+  setDoc,
+  doc,
+  getDoc
 } from 'firebase/firestore';
 import {
   getStorage,
@@ -31,7 +33,7 @@ const db = getFirestore();
 const storage = getStorage();
 
 const iconsCol = collection(db, 'icons');
-const picsCol = collection(db, 'pictures');
+
 const resultsCol = collection(db, 'results');
 
 async function getImageUrl(folder, imgName) {
@@ -39,11 +41,10 @@ async function getImageUrl(folder, imgName) {
   return getDownloadURL(imgRef);
 }
 
-export async function getGamePicture(name) {
-  const picQuery = query(picsCol, where('name', '==', name), limit(1));
-  const snapShot = await getDocs(picQuery);
-  const data = snapShot.docs[0].data();
-
+export async function getGamePicture(pictureId) {
+  const docRef = doc(db, 'pictures', pictureId);
+  const snapshot = await getDoc(docRef);
+  const data = snapshot.data()
   const imgUrl = await getImageUrl('game-pictures', data.imgName);
 
   return {
