@@ -14,6 +14,7 @@ import GameModalWindow from './components/GameModalWindow';
 import './Game.css';
 
 export default function Game(props) {
+  const targetsDB = useRef(null);
   const [imgUrl, setImgUrl] = useState(null);
   const [dropDownPosition, setDropDownPosition] = useState(null);
   const [lastClickCoords, setLastClickCoords] = useState(null);
@@ -21,6 +22,7 @@ export default function Game(props) {
   const [stopwatchMillisec, setStopwatchMillisec] = useState(0);
   const stopwatchID = useRef(null);
   const didMount = useRef(false);
+  const imageLoaded = useRef(false);
 
   const [gameIsReady, setGameIsReady] = useState(false);
   const [gameIsOn, setGameIsOn] = useState(false);
@@ -38,9 +40,11 @@ export default function Game(props) {
   useEffect(() => {
     getGamePicture('mortal-kombat')
       .then(data => {
-        setTargets(data.targets);
+        targetsDB.current = data.targets;
         setImgUrl(data.imgUrl);
+        setGame()
       })
+      
 
     return () => {
       stopStopwatch();
@@ -101,6 +105,7 @@ export default function Game(props) {
   }
   
   function startStopwatch() {
+    setStopwatchMillisec(0);
     const dt = 10;
     stopwatchID.current = setInterval(() => {
       setStopwatchMillisec(elapsed => elapsed + dt)
@@ -114,12 +119,35 @@ export default function Game(props) {
   }
 
   const handleLoadImg = (e) => {
-    setGameIsReady(true)
+    imageLoaded.current = true;
+  }
+
+  function getRandomElements(arr, count) {
+    if (!(arr && arr.length > 0))
+      return
+
+    const returnedElements = [];
+    const availableIndexes = [...Array(arr.length).keys()];
+    for (let i = 0; i < count && availableIndexes.length > 0; i++) {
+      const indexOfIndex = Math.floor(Math.random() * availableIndexes.length);
+      const indexOfElement = availableIndexes.splice(indexOfIndex, 1)[0];
+      const selectedElement = arr[indexOfElement];
+      returnedElements.push(selectedElement);
+    }
+    return returnedElements
+  }
+
+  function setGame() {
+    let newTargets = getRandomElements(targetsDB.current, 3);
+    setTargets(newTargets);
+    setGameIsReady(true);
   }
 
   function startGame() {
-    setGameIsOn(true);
-    startStopwatch();
+    if (imageLoaded && gameIsReady) {
+      setGameIsOn(true);
+      startStopwatch();
+    }
   }
 
   function endGame() {
@@ -130,6 +158,8 @@ export default function Game(props) {
     setResult({
       time: stopwatchMillisec
     })
+
+    setGame();
   }
 
 

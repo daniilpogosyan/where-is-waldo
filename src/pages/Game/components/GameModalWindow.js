@@ -17,7 +17,7 @@ export default function GameModalWindow(props) {
         props.gameIsReady
         ? (
           <button onClick={props.startGame}>
-            Start!
+            {props.lastGameTime ? "Play Again" : "Start!"}
           </button>
         )
         : <p className='sub-text'>Loading...</p>
