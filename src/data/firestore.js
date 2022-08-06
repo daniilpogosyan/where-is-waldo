@@ -30,11 +30,12 @@ initializeApp(firebaseConfig);
 const db = getFirestore();
 const storage = getStorage();
 
+const iconsCol = collection(db, 'icons');
 const picsCol = collection(db, 'pictures');
 const resultsCol = collection(db, 'results');
 
-async function getImageUrl(imgName) {
-  const imgRef = await ref(storage, `game-pictures/${imgName}`);
+async function getImageUrl(folder, imgName) {
+  const imgRef = await ref(storage, `${folder}/${imgName}`);
   return getDownloadURL(imgRef);
 }
 
@@ -43,12 +44,26 @@ export async function getGamePicture(name) {
   const snapShot = await getDocs(picQuery);
   const data = snapShot.docs[0].data();
 
-  const imgUrl = await getImageUrl(data.imgName);
+  const imgUrl = await getImageUrl('game-pictures', data.imgName);
 
   return {
     targets: data.targets,
     imgUrl
   }
+}
+
+export async function getIcons() {
+  const snapshot = await getDocs(iconsCol);
+  const iconsData = [];
+
+  snapshot.forEach((doc) => iconsData.push(doc.data()));
+  console.log(iconsData)
+
+  return await Promise.all(iconsData.map(async (icon) => ({
+    name: icon.name,
+    imgUrl: await getImageUrl('game-icons', icon.imgName),
+    pictureId: icon.picture.id
+  })))
 }
 
 export async function getResults() {

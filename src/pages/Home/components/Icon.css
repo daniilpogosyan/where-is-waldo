@@ -1,0 +1,10 @@
+.cropper {
+  overflow: hidden;
+  width: 300px;
+  height: 250px;
+  border: 1px solid #000;
+}
+
+.cropped {
+  width: 100%;
+}
