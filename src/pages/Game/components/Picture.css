@@ -1,3 +1,4 @@
 .picture {
+  cursor: url("../../../assets/crosshair-cursor.svg") 16 16, crosshair;
   width: 100%;
 }
