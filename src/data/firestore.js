@@ -96,7 +96,7 @@ export async function setResult({pictureId, time}) {
   const q = query(
     resultsCol,
     where('uid', '==', currentUser.uid),
-    where('pictureId', '==', 'pictureId'),
+    where('pictureId', '==', pictureId),
     limit(1)
   );
   
