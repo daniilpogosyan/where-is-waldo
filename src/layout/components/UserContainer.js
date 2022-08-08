@@ -30,7 +30,7 @@ export default function UserContainer(props) {
         ? <span>{username}</span>
         : <Link className="link" to='/auth'>Log in</Link>
       }
-      <div className="drop-down">
+      <div className="drop-down main-text">
         {
           userIsAuthorized
           ? <button

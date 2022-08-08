@@ -1,6 +1,5 @@
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 20px;
   background-color: var(--black);
@@ -8,7 +7,10 @@
 } 
 
 .header-links {
+  flex: 1;
   display: flex;
+  justify-content: right;
+  margin: 0 50px;
   gap: 50px;
 }
 

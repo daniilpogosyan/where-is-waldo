@@ -1,4 +1,6 @@
 .footer {
+  text-align: center;
+  padding: 10px;
   color: var(--dark-orange);
   background-color: var(--dark-gray);
 }

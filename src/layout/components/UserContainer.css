@@ -1,3 +1,15 @@
 .user-container {
   color: var(--light-orange);
 }
+
+
+.user-container .drop-down {
+  background-color: inherit;
+}
+
+.user-container button {
+  width: 100%;
+  border: none;
+  background-color: var(--gray);
+  color: inherit;
+}
