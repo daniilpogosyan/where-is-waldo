@@ -6,6 +6,10 @@ html, body {
   height: 100%;
 }
 
+a {
+ text-decoration: none;
+}
+
 ul, ol {
   list-style: none;
   padding: 0;

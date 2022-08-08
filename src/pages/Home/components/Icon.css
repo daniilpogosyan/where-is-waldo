@@ -2,9 +2,20 @@
   overflow: hidden;
   width: 300px;
   height: 250px;
-  border: 1px solid #000;
 }
 
 .cropped {
   width: 100%;
+}
+
+.icon {
+  border-radius: 0 0 1em 1em;
+  background-color: var(--light-gray);
+  box-shadow: 0 4px 12px #0008;
+}
+
+.icon__title {
+  margin: 0;
+  padding: 0.25em;
+  text-align: center;
 }
