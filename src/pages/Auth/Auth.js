@@ -10,10 +10,11 @@ export default function Auth(props) {
   const [tab, setTab] = useState('Log in');
 
   return (
-    <div className="auth">
+    <div className="auth main-text">
       <TabBar
         tabNames={['Log in', 'Sign up']}
         setTab={setTab}
+        currentTab={tab}
       />
       {
         tab === 'Log in'

@@ -1,11 +1,11 @@
-export default function TabBar({tabNames, setTab}) {
+export default function TabBar({tabNames, setTab, currentTab}) {
   return (
     <div className="tabs">
       {
         tabNames.map(tabName => (
           <span
             key={tabName}
-            className="tab"
+            className={currentTab === tabName ? "tab tab--active" : "tab"}
             onClick={() => setTab(tabName)}
           >
             {tabName}

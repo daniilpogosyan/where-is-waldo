@@ -6,6 +6,8 @@ import {
   signInWithEmailAndPassword
 } from 'firebase/auth';
 
+import './Form.css';
+
 initializeApp(firebaseConfig);
 
 export default function SignInForm(props) {
@@ -22,6 +24,7 @@ export default function SignInForm(props) {
 
   return (
     <form
+      className="form"
       onSubmit={handleSubmit}
       action=""
     >

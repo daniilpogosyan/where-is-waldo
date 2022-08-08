@@ -1,0 +1,25 @@
+.form {
+  padding: 20px;
+  background-color: var(--light-gray);
+}
+
+.form label,
+.form input  {
+  display: block;
+}
+
+.form label {
+  margin: 1.5em;
+}
+
+.form input {
+  background-color: var(--gray);
+  color: inherit;
+  margin-top: 0.5em;
+  border: none;
+}
+
+.form label {
+  color: var(--dark-gray);
+  color: inherit;
+}

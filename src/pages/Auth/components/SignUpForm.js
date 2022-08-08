@@ -8,6 +8,8 @@ import {
   reload
 } from 'firebase/auth';
 
+import './Form.css';
+
 initializeApp(firebaseConfig);
 
 export default function SignUpForm(props) {
@@ -28,6 +30,7 @@ export default function SignUpForm(props) {
 
   return (
     <form
+      className="form"
       onSubmit={handleSubmit}
       action=""
     >

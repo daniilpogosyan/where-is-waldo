@@ -1,15 +1,40 @@
 .auth {
   width: 500px;
-  margin: auto;
-  background-color: var(--light-gray);
+  margin: 50px auto;
 }
 
 .tabs {
   display: flex;
+  gap: 20px;
   justify-content: space-evenly;
 }
 
 .tab {
-  cursor: pointer;
+  font-weight: 800;
+  padding: 0.2em 0;
+  flex: 1;
   color: var(--orange);
+  text-align: center;
+  cursor: pointer;
+  border-radius: 10px 10px 0 0;
+  background-color: var(--dark-gray);
+}
+
+.tab.tab--active {
+  color: var(--light-orange);
+  background-color: var(--light-gray);
+}
+
+.form button {
+  border: none;
+  padding: 0.4em 1.5em;
+  border-radius: 8px;
+  background-color: var(--gray);
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background-color: var(--dark-gray);
 }
