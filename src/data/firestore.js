@@ -78,10 +78,7 @@ export async function getResults(pictureId) {
 
   snapshot.forEach(doc => {
     const data = doc.data();
-    results.push({
-      username: data.username,
-      time: data.time
-    })
+    results.push(data)
   });
 
   return await results;

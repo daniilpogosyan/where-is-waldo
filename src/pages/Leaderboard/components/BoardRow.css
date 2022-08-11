@@ -3,3 +3,8 @@
   justify-content: space-between;
   width: 100%;
 }
+
+.current-user-result {
+  font-weight: bolder;
+  color: var(--light-orange);
+}

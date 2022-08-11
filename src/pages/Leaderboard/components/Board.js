@@ -9,6 +9,7 @@ export default function Board({results, currentUserResult}) {
         {results.map(result => (
           <li key={result.username + result.time}>
             <BoardRow
+              ofCurrentUser={currentUserResult?.uid === result.uid}
               username={result.username}
               time={result.time}
             />
@@ -17,6 +18,7 @@ export default function Board({results, currentUserResult}) {
       </ol>
       {currentUserResult && (
         <BoardRow
+          ofCurrentUser={true}
           username={currentUserResult.username}
           time={currentUserResult.time}
         />
