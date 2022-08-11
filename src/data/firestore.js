@@ -87,7 +87,8 @@ export async function getResults(pictureId) {
   return await results;
 }
 
-export async function setResult({pictureId, time}) {
+// get doc-result of authenticated user on picture that has `pictureId`
+export async function getResult(pictureId) {
   const currentUser = getAuth().currentUser;
 
   if (currentUser === null) return
@@ -100,6 +101,14 @@ export async function setResult({pictureId, time}) {
     limit(1)
   );
   
+  const snapshot = await getDocs(q);
+
+  return snapshot.docs[0]
+}
+
+export async function setResult({pictureId, time}) {
+  const currentUser = getAuth().currentUser;
+
   const newData = {
     pictureId: pictureId,
     time: time,
@@ -107,10 +116,10 @@ export async function setResult({pictureId, time}) {
     username: currentUser.displayName
   };
 
-  const snapshot = await getDocs(q);
+  const existingResultDoc = await getResult(pictureId);
 
   //if a result doesn't exist (user hasn't played yet)
-  if (snapshot.docs.length === 0) {
+  if (!existingResultDoc) {
     try {
       await addDoc(resultsCol, newData);
       console.log('data is created.');
@@ -122,10 +131,9 @@ export async function setResult({pictureId, time}) {
   }
 
   // if a result exists and current time is lower than the stored one
-  if (snapshot.docs.length === 1
-    && snapshot.docs[0].data().time > time) {
+  if (existingResultDoc.data().time > time) {
     try {
-      await setDoc(snapshot.docs[0].ref, newData);
+      await setDoc(existingResultDoc.ref, newData);
       console.log('data is updated.');
     }
     catch(err) {
