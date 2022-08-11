@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 
-import { getResults, getIcons } from '../../data/firestore';
+import {
+  getResults,
+  getIcons,
+  getResult
+ } from '../../data/firestore';
 
 import Select from './components/Select';
 import Board from './components/Board';
@@ -13,6 +17,7 @@ export default function Leaderboard(props) {
   const [currentOption, setCurrentOption] = useState(null);
   const [results, setResults] = useState(null);
   const [logMessage, setLogMessage] = useState('Loading...');
+  const [currentUserResult, setCurrentUserResult] = useState(null);
 
   useEffect(() => {
     getIcons()
@@ -32,6 +37,11 @@ export default function Leaderboard(props) {
   useEffect(() => {
     if (!currentOption) return
     
+    getResult(currentOption.pictureId)
+    .then(resultDoc => {
+      setCurrentUserResult(resultDoc?.data())
+    });
+
     getResults(currentOption.pictureId)
     .then(results => {
       if (results.length === 0)
@@ -66,6 +76,7 @@ export default function Leaderboard(props) {
         ? (
             <Board
               results={results}
+              currentUserResult={currentUserResult}
             />
           )
         : <p className="sub-text">{logMessage}</p>
