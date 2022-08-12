@@ -6,6 +6,15 @@ html, body {
   height: 100%;
 }
 
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
 a {
  text-decoration: none;
 }
@@ -18,6 +27,8 @@ ul, ol {
 #root {
   height: 100%;
 }
+
+
 
 .main-text {
   color: #fff;
