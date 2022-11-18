@@ -51,6 +51,9 @@ export default function Game(props) {
     return () => {
       stopStopwatch();
     }
+    // setGame is setter for state, which doesn't change over the time
+    // pictureId is received from search params, so it doesn't change either
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -62,6 +65,8 @@ export default function Game(props) {
     if(targets?.length === 0) {
       endGame();
     }
+    // endGame doesn't change over the time
+    // eslint-disable-next-line
   }, [targets])
 
   //return true if distance between points is lower than eps

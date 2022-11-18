@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import Clock from '../../../components/Clock';
 
 import './Stopwatch.css';
