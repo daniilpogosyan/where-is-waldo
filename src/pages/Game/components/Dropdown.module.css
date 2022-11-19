@@ -1,5 +1,22 @@
 .dropdown {
+  min-width: 5em;
   position: absolute;
-  padding: 0.5em;
-  background-color: #fff;
+  padding: 0.25em;
+  border: 2px solid var(--dark-orange);
+  border-radius: 0.5em;
+  background-color: var(--black);
+}
+
+.dropdown button {
+  text-align: start;
+  width: 100%;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown button:hover,
+.dropdown button:focus {
+  background-color: var(--gray);
 }

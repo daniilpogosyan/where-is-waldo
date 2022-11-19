@@ -29,15 +29,16 @@ export default function Dropdown(props) {
     return (
       <ul
         ref={dropdownRef}
-        className={style['dropdown']}
+        className={`${style['dropdown']} main-text`}
         style={positionWithoutCrossing}
       >
         {props.targets.map(target => (
-          <li
-            key={target.name}
-            onClick={() => props.onChoose(target.name)}
-          >
-            {target.name}
+          <li key={target.name}>
+            <button
+              onClick={() => props.onChoose(target.name)}
+            >
+              {target.name}
+            </button>
           </li>
         ))}
       </ul>
