@@ -28,14 +28,14 @@
   padding: 0.25em;
 }
 
-.drop-down {
+.dropdown {
   position: absolute;
   padding: 0.5em;
   visibility: hidden;
   padding: 0;
 }
 
-.select:hover .drop-down {
+.select:hover .dropdown {
   position: absolute;
   visibility: visible;
   width: 100%;

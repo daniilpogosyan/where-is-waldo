@@ -7,7 +7,7 @@ export default function Select(props) {
       {props.options && props.currentOption && (
         <>
           <span className={style['current-option']}>{props.currentOption.name}</span>
-          <ul className={`${style['drop-down']} ${style['options']}`}>
+          <ul className={`${style['dropdown']} ${style['options']}`}>
             {props.options.map(option => (
               <li
                 key={option.pictureId}
@@ -51,7 +51,7 @@ export default function Select(props) {
 
 
 //   return (
-//     <div className=" drop-down-container drop-down-container--on-focus-within drop-down-container--on-hover">
+//     <div className=" dropdown-container dropdown-container--on-focus-within dropdown-container--on-hover">
 //       {displayOptions && (
 //         <>
 //         <form
@@ -64,7 +64,7 @@ export default function Select(props) {
 //             onChange={handleChangeInput}
 //           />
 //         </form>
-//           <ul className="options drop-down">
+//           <ul className="options dropdown">
 //             {displayOptions.map((option, index) => (
 //               <li
 //                 key={option.pictureId}
@@ -85,11 +85,11 @@ export default function Select(props) {
 
 // export default function Select(props) {
 //   return (
-//     <div className=" drop-down-container drop-down-container--on-hover">
+//     <div className=" dropdown-container dropdown-container--on-hover">
 //       {props.options && props.currentOption && (
 //         <>
 //           <span>{props.currentOption.name}</span>
-//           <div className="drop-down">
+//           <div className="dropdown">
 //             {props.options.map(option => (
 //               <p
 //                 key={option.pictureId}

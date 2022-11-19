@@ -1,7 +1,7 @@
 import { useRef } from 'react';
-import style from './DropDown.module.css';
+import style from './Dropdown.module.css';
 
-export default function DropDown(props) {
+export default function Dropdown(props) {
   const dropdownRef = useRef(null);
 
   if (props.position && props.targets.length > 0) {
@@ -29,7 +29,7 @@ export default function DropDown(props) {
     return (
       <ul
         ref={dropdownRef}
-        className={style['drop-down']}
+        className={style['dropdown']}
         style={positionWithoutCrossing}
       >
         {props.targets.map(target => (

@@ -9,7 +9,7 @@ import { getGamePicture, setResult } from '../../data/firestore.js';
 
 import Picture from './components/Picture';
 import Stopwatch from './components/Stopwatch';
-import DropDown from './components/DropDown';
+import Dropdown from './components/Dropdown';
 import GameModalWindow from './components/GameModalWindow';
 
 import style from './Game.module.css';
@@ -18,7 +18,7 @@ export default function Game(props) {
   const { pictureId } = useParams();
   const targetsDB = useRef(null);
   const [imgUrl, setImgUrl] = useState(null);
-  const [dropDownPosition, setDropDownPosition] = useState(null);
+  const [dropDownPosition, setDropdownPosition] = useState(null);
   const [lastClickCoords, setLastClickCoords] = useState(null);
   const [targets, setTargets] = useState(null);
   const [stopwatchMillisec, setStopwatchMillisec] = useState(0);
@@ -89,14 +89,14 @@ export default function Game(props) {
       y: absCoords.y / imageRect.height
     }
     
-    setDropDownPosition(absCoords);
+    setDropdownPosition(absCoords);
     setLastClickCoords(relCoords)
 
   }
 
   function handlePressEscapeKey(e) {
     if (e.key === 'Escape') 
-      setDropDownPosition(undefined)
+      setDropdownPosition(undefined)
   }
   
   const handleChooseTarget = (name) => {
@@ -108,7 +108,7 @@ export default function Game(props) {
     )
     if (targetFound)
       setTargets(targets.filter(target => target.name !== name))
-    setDropDownPosition(null);
+    setDropdownPosition(null);
   }
   
   function startStopwatch() {
@@ -183,7 +183,7 @@ export default function Game(props) {
       <Stopwatch
         elapsed={stopwatchMillisec}
       />
-      <DropDown
+      <Dropdown
         position={dropDownPosition}
         targets={targets}
         onChoose={handleChooseTarget}
