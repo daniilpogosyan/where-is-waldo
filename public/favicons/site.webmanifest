@@ -1,0 +1,16 @@
+{
+    "name": "Where's Waldo?",
+    "short_name": "Where's Waldo?",
+    "icons": [
+        {
+            "src": "android-chrome-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#333333",
+    "background_color": "#333333",
+    "start_url": "https://where-is-waldo-a04da.web.app/",
+    "display": "standalone",
+    "orientation": "portrait"
+}
