@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword
 } from 'firebase/auth';
 
-import './Form.css';
+import style from './Form.module.css';
 
 initializeApp(firebaseConfig);
 
@@ -24,7 +24,7 @@ export default function SignInForm(props) {
 
   return (
     <form
-      className="form"
+      className={style["form"]}
       onSubmit={handleSubmit}
       action=""
     >

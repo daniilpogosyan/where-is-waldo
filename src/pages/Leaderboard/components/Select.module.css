@@ -15,14 +15,30 @@
   border-top: 1px solid var(--dark-orange);
 }
 
-.leaderboard .drop-down-container {
+.select {
+  position: relative;
   text-align: center;
   min-width: 200px;
   background-color: var(--gray);
   color: var(--orange);
 }
 
-.current-select {
+.current-option {
   display: inline-block;
   padding: 0.25em;
+}
+
+.drop-down {
+  position: absolute;
+  padding: 0.5em;
+  visibility: hidden;
+  padding: 0;
+}
+
+.select:hover .drop-down {
+  position: absolute;
+  visibility: visible;
+  width: 100%;
+  left: 0;
+  top: 100%;
 }

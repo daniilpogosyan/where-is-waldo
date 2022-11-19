@@ -6,7 +6,7 @@
   font-family: Arial, Helvetica, sans-serif;
 } 
 
-.header-links {
+.links {
   flex: 1;
   display: flex;
   justify-content: right;

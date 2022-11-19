@@ -8,10 +8,6 @@
   display: block;
 }
 
-.form label {
-  margin: 1.5em;
-}
-
 .form input {
   background-color: var(--gray);
   color: inherit;
@@ -20,6 +16,21 @@
 }
 
 .form label {
+  margin: 1.5em;
   color: var(--dark-gray);
   color: inherit;
+}
+
+.form button {
+  border: none;
+  padding: 0.4em 1.5em;
+  border-radius: 8px;
+  background-color: var(--gray);
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background-color: var(--dark-gray);
 }

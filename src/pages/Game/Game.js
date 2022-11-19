@@ -12,7 +12,7 @@ import Stopwatch from './components/Stopwatch';
 import DropDown from './components/DropDown';
 import GameModalWindow from './components/GameModalWindow';
 
-import './Game.css';
+import style from './Game.module.css';
 
 export default function Game(props) {
   const { pictureId } = useParams();
@@ -172,7 +172,7 @@ export default function Game(props) {
 
 
   return (
-    <div className="game">
+    <div className={style["game"]}>
       {gameIsOn === false && (
         <GameModalWindow
           gameIsReady={gameIsReady}

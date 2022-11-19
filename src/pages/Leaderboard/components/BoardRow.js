@@ -1,12 +1,11 @@
 import Clock from '../../../components/Clock';
 
-import './BoardRow.css';
+import style from './BoardRow.module.css';
 
 export default function BoardRow(props) {
-  const className = (
-    "board-row "
-    + (props.ofCurrentUser ? "current-user-result " : "main-text ")
-  )
+  const className = props.ofCurrentUser
+    ? `${style['board-row']} ${style['current-user-result']}`
+    : `${style['board-row']} main-text`;
      
   return (
     <div className={className}>

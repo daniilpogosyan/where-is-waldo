@@ -8,7 +8,7 @@ import {
   reload
 } from 'firebase/auth';
 
-import './Form.css';
+import style from './Form.module.css';
 
 initializeApp(firebaseConfig);
 
@@ -30,7 +30,7 @@ export default function SignUpForm(props) {
 
   return (
     <form
-      className="form"
+      className={style["form"]}
       onSubmit={handleSubmit}
       action=""
     >

@@ -1,10 +1,10 @@
-import './ModalWindow.css';
+import style from './ModalWindow.module.css';
 
 export default function ModalWindow({children}) {
   return (
-    <div className="modal-window">
-      <div className="modal-window__content">
-      {children}
+    <div className={style["modal-window"]}>
+      <div className={style["content"]}>
+        {children}
       </div>
     </div>
   )

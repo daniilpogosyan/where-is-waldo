@@ -7,7 +7,7 @@ import {
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import './UserContainer.css';
+import style from './UserContainer.module.css';
 
 export default function UserContainer(props) {
   //it won't work if use user object instead of username
@@ -24,13 +24,13 @@ export default function UserContainer(props) {
   const userIsAuthorized = (username !== null && username !== undefined);
 
   return (
-    <div className="user-container drop-down-container drop-down-container--on-hover">
+    <div className={`${style['user-container']}`}>
       {
         userIsAuthorized
-        ? <span>{username}</span>
-        : <Link className="link" to='/auth'>Log in</Link>
+        ? <span className={style["dropdown-trigger"]}>{username}</span>
+        : <Link className={style["dropdown-trigger"]} to='/auth'>Log in</Link>
       }
-      <div className="drop-down main-text">
+      <div className={`${style['dropdown']} main-text`}>
         {
           userIsAuthorized
           ? <button

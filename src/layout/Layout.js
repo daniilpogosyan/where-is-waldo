@@ -3,13 +3,13 @@ import { Outlet } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-import './Layout.css';
+import style from './Layout.module.css';
 
 export default function Layout(props) {
   return (
-    <div className="layout">
+    <div className={style["layout"]}>
       <Header />
-      <div className="content">
+      <div className={style["content"]}>
         <Outlet />
       </div>
       <Footer />

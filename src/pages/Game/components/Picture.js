@@ -1,4 +1,4 @@
-import './Picture.css';
+import style from './Picture.module.css';
 
 export default function Picture(props) {
   return (
@@ -6,7 +6,7 @@ export default function Picture(props) {
       onLoad={props.onLoad}
       onClick={props.onClick}
       draggable="false"
-      className="picture"
+      className={style['picture']}
       src={props.imgUrl}
       alt=""
     />

@@ -1,11 +1,11 @@
 import BoardRow from './BoardRow';
 
-import './Board.css';
+import style from './Board.module.css';
 
 export default function Board({results, currentUserResult}) {
   return (
     <>
-      <ol className="board">
+      <ol className={style["board"]}>
         {results.map(result => (
           <li key={result.username + result.time}>
             <BoardRow

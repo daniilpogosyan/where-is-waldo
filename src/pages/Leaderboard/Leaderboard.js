@@ -9,7 +9,7 @@ import {
 import Select from './components/Select';
 import Board from './components/Board';
 
-import './Leaderboard.css';
+import style from './Leaderboard.module.css';
 
  
 export default function Leaderboard(props) {
@@ -62,8 +62,8 @@ export default function Leaderboard(props) {
   }
 
   return (
-    <div className="leaderboard">
-      <h2 className="leaderboard-heading">
+    <div className={style["leaderboard"]}>
+      <h2 className={style["heading"]}>
         Leaderboard
       </h2>
       <Select

@@ -1,8 +1,3 @@
-.auth {
-  width: 500px;
-  margin: 50px auto;
-}
-
 .tabs {
   display: flex;
   gap: 20px;
@@ -20,21 +15,7 @@
   background-color: var(--dark-gray);
 }
 
-.tab.tab--active {
+.tab.active {
   color: var(--light-orange);
   background-color: var(--light-gray);
-}
-
-.form button {
-  border: none;
-  padding: 0.4em 1.5em;
-  border-radius: 8px;
-  background-color: var(--gray);
-  color: #fff;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.form button:hover {
-  background-color: var(--dark-gray);
 }

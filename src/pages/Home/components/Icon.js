@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
 
-import './Icon.css';
+import style from './Icon.module.css';
 
 export default function Icon({name, imgUrl, pictureId}) {
   return (
-    <div className="icon">
+    <div className={style["icon"]}>
       <Link to={`/game/${pictureId}`}>
-        <div className="cropper">
+        <div className={style["cropper"]}>
           <img
-            className="cropped"
+            className={style["cropped"]}
             src={imgUrl}
             alt=""
           />
         </div>
-        <h3 className="icon__title main-text">{name}</h3>
+        <h3 className={`${style['title']} main-text`}>{name}</h3>
       </Link>
     </div>
   )

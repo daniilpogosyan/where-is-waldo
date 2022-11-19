@@ -1,12 +1,13 @@
-import './Select.css';
+import style from './Select.module.css';
 
 export default function Select(props) {
+  
   return (
-    <div className="drop-down-container drop-down-container--on-hover">
+    <div className={style['select']}>
       {props.options && props.currentOption && (
         <>
-          <span className="current-select">{props.currentOption.name}</span>
-          <ul className="drop-down options">
+          <span className={style['current-option']}>{props.currentOption.name}</span>
+          <ul className={`${style['drop-down']} ${style['options']}`}>
             {props.options.map(option => (
               <li
                 key={option.pictureId}

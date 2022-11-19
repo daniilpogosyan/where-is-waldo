@@ -7,7 +7,7 @@
   z-index: 10;
 }
 
-.modal-window__content {
+.content {
   position: sticky;
   left: 0;
   right: 0;

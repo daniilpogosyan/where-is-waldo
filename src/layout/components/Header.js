@@ -2,19 +2,19 @@ import { Link } from 'react-router-dom';
 
 import UserContainer from './UserContainer';
 
-import './Header.css';
+import style from './Header.module.css';
 
 export default function Header(props) {
   return (
-    <header className="header">
-      <h1 className="heading">
-        <Link className="link" to="/">
+    <header className={style["header"]}>
+      <h1 className={style["heading"]}>
+        <Link className={style["link"]} to="/">
           Where's Waldo?
         </Link>
       </h1>
-      <ul className="header-links">
+      <ul className={style["links"]}>
         <li>
-          <Link className="link" to="/leaderboard">
+          <Link className={style["link"]} to="/leaderboard">
             Leaderboard
           </Link>
         </li>

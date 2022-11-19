@@ -37,27 +37,3 @@ ul, ol {
 .sub-text {
   color: #cbcbcb;
 }
-
-.drop-down {
-  position: absolute;
-  padding: 0.5em;
-  /* background-color: #fff; */
-}
-
-.drop-down-container {
-  position: relative;
-}
-
-.drop-down-container .drop-down {
-  visibility: hidden;
-  padding: 0;
-}
-
-.drop-down-container--on-hover:hover .drop-down,
-.drop-down-container--on-focus-within:focus-within .drop-down {
-  position: absolute;
-  visibility: visible;
-  width: 100%;
-  left: 0;
-  top: 100%;
-}

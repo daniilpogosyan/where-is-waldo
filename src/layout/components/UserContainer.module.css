@@ -1,0 +1,30 @@
+.user-container {
+  color: var(--light-orange);
+  position: relative
+}
+
+.dropdown-trigger {
+  color: inherit
+}
+
+.dropdown {
+  position: absolute;
+  visibility: hidden;
+  padding: 0
+}
+
+.user-container button {
+  width: 100%;
+  border: none;
+  background-color: var(--gray);
+  color: inherit;
+}
+
+.user-container:focus-within .dropdown,
+.user-container:hover .dropdown {
+  position: absolute;
+  visibility: visible;
+  width: 100%;
+  left: 0;
+  top: 100%;
+}
