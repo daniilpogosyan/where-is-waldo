@@ -1,3 +1,5 @@
+import style from './Clock.module.css';
+
 export default function Clock({millisec}) {
   function makeTwoDigit(num) {
     if (num % 1 !==0 )
@@ -17,5 +19,5 @@ export default function Clock({millisec}) {
     return minutes + ':' + seconds + ':' + hundredths    
   };
 
-  return <span>{formatTime(millisec)}</span>
+  return <span className={style['clock']}>{formatTime(millisec)}</span>
 }

@@ -1,7 +1,15 @@
 .stopwatch {
   position: sticky;
   top: 0;
+
+  /* center element and keep areas on sides clickable */
+  display: inline-block;
+  left: 50%;
+  transform: translate(-50%); 
   text-align: center;
+
+  /* to be on top of dropdown on picture */
+  z-index: 1;
 }
 
 .value {
