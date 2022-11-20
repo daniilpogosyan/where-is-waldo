@@ -21,8 +21,8 @@ export default function Game(props) {
   const [dropDownPosition, setDropdownPosition] = useState(null);
   const [lastClickCoords, setLastClickCoords] = useState(null);
   const [targets, setTargets] = useState(null);
-  const [stopwatchMillisec, setStopwatchMillisec] = useState(0);
-  const stopwatchID = useRef(null);
+  const [stopwatchStatus, setStopwatchStatus] = useState('stop')
+  const [timeResult, setTimeResult] = useState(0);
   const didMount = useRef(false);
   const imageLoaded = useRef(false);
 
@@ -40,6 +40,16 @@ export default function Game(props) {
   }, []);
 
   useEffect(() => {
+    console.log(didMount.current, timeResult)
+    if (gameIsOn === false && timeResult > 0) {
+      setResult({
+        pictureId: pictureId,
+        time: timeResult
+      })
+    }
+  }, [timeResult])
+
+  useEffect(() => {
     getGamePicture(pictureId)
       .then(data => {
         targetsDB.current = data.targets;
@@ -48,9 +58,6 @@ export default function Game(props) {
       })
       
 
-    return () => {
-      stopStopwatch();
-    }
     // setGame is setter for state, which doesn't change over the time
     // pictureId is received from search params, so it doesn't change either
     // eslint-disable-next-line
@@ -111,20 +118,6 @@ export default function Game(props) {
     setDropdownPosition(null);
   }
   
-  function startStopwatch() {
-    setStopwatchMillisec(0);
-    const dt = 10;
-    stopwatchID.current = setInterval(() => {
-      setStopwatchMillisec(elapsed => elapsed + dt)
-    }, dt);
-    console.log('stopwatch is running! id:', stopwatchID.current)
-  }
-
-  function stopStopwatch() {
-    clearInterval(stopwatchID.current);
-    console.log('stopwatch is stopped! id:', stopwatchID.current)
-  }
-
   const handleLoadImg = (e) => {
     imageLoaded.current = true;
   }
@@ -153,20 +146,14 @@ export default function Game(props) {
   function startGame() {
     if (imageLoaded && gameIsReady) {
       setGameIsOn(true);
-      startStopwatch();
+      setStopwatchStatus('start');
     }
   }
 
   function endGame() {
-    stopStopwatch();
+    setStopwatchStatus('stop');
     setGameIsReady(false);
     setGameIsOn(false);
-
-    setResult({
-      pictureId: pictureId,
-      time: stopwatchMillisec
-    })
-
     setGame();
   }
 
@@ -177,11 +164,12 @@ export default function Game(props) {
         <GameModalWindow
           gameIsReady={gameIsReady}
           startGame={startGame}
-          lastGameTime={stopwatchMillisec}
+          lastGameTime={timeResult}
         />
       )}
       <Stopwatch
-        elapsed={stopwatchMillisec}
+        status={stopwatchStatus}
+        getTime={(time) => setTimeResult(time)}
       />
       <Dropdown
         position={dropDownPosition}
